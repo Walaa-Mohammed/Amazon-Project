@@ -1,0 +1,185 @@
+<!doctype html><html>
+    <head>
+ <title dir="ltr">Amazon Registration</title>
+ <link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/I/61Brdu0o6LL._RC|11Fd9tJOdtL.css,21y5jWQoUML.css,31Q3id-QR0L.css,31P8A7PnBZL.css_.css?AUIClients/AmazonUI#us.not-trident" />
+  <link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/I/01SdjaY0ZsL._RC|419sIPk+mYL.css,41REwEK74kL.css_.css?AUIClients/AuthenticationPortalAssets" />
+  <link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/I/11E08O3eXDL.css?AUIClients/CVFAssets" />
+  </head>
+ <body>
+ <div id="a-page">
+ <div class="a-section a-padding-medium auth-workflow">
+<div class="a-section a-spacing-none auth-navbar">
+  <div class="a-section a-spacing-medium a-text-center">
+<a class="a-link-nav-icon" tabindex="-1" href="/ref=ap_frn_logo">
+ <i class="a-icon a-icon-logo" role="img" aria-label="Amazon"></i>
+</a>
+ </div>
+</div>
+
+<div class="a-section auth-pagelet-container">
+ <div class="a-section">
+<form id="register_form" name="register" method="post">
+<div class="a-box a-spacing-extra-large">
+    <div class="a-box-inner">
+<h1 class="a-spacing-small">Create account</h1>
+<div class="a-row a-spacing-base">
+<label for="ap_customer_name" class="a-form-label"> Your name</label>
+<span hidden style="color: red;"></span>
+<input type="text" maxlength="50" required id="ap_customer_name"
+ name="customerName" tabindex="1" 
+  class="a-input-text a-span12 auth-autofocus auth-required-field auth-contact-verification-request-info"/>
+</div>
+<div class="auth-require-fields-match-group">
+<div class="a-row a-spacing-base">          
+<label for="ap_email" class="a-form-label">  Email</label>
+<span id="checkemail"></span>
+<input type="email" maxlength="64" required id="ap_email" name="email" tabindex="3" class="a-input-text a-span12 auth-required-field auth-require-fields-match auth-require-email-validaton auth-require-reverify-on-change auth-contact-verification-request-info"/>
+
+  </div></div>
+ <div class="auth-require-fields-match-group">
+<div class="a-row a-spacing-base"><label for="ap_password" class="a-form-label">Password</label>
+<input type="password" maxlength="1024"  required id="ap_password" autocomplete="off" placeholder="At least 6 characters" name="password" tabindex="5" class="a-input-text a-form-normal a-span12 auth-required-field auth-require-fields-match auth-require-password-validation"/>
+<div class="a-box a-alert-inline a-alert-inline-info auth-inlined-information-message a-spacing-top-mini"><div class="a-box-inner a-alert-container"><i class="a-icon a-icon-alert"></i><div class="a-alert-content">
+    Passwords must be at least 6 characters.
+  </div></div></div>
+
+</div>
+<div class="a-row a-spacing-base">
+<label for="ap_password_check" class="a-form-label">Re-enter password</label>
+<input type="password" maxlength="1024" required id="ap_password_check" autocomplete="off" name="passwordCheck" tabindex="6" class="a-input-text a-form-normal a-span12 auth-required-field auth-require-fields-match"/>
+
+</div></div>
+<div class="a-row a-spacing-extra-large">
+<span class="a-button a-button-normal a-button-span12 a-button-primary">
+  <span class="a-button-inner">
+ <input id="continue" tabindex="11" class="a-button-input" type="submit"/>
+    <span class="a-button-text" aria-hidden="true">
+Create your Amazon account
+</span></span></span> 
+<div class="a-row">
+  Already have an account?
+  <a class="a-link-emphasis" href="login.html">
+      Sign-In
+  </a>
+  </div>      
+  <div id="legalTextRow" class="a-row a-spacing-top-medium a-size-small">
+    By creating an account, you agree to Amazon's <a href="">Privacy Notice</a>.
+  </div> 
+ </div>
+ <div class="a-divider a-divider-section"><div class="a-divider-inner"></div></div>
+  
+      </div></div>
+    </form>
+  </div>
+  </div>
+</div> 
+</div>
+<div id="right-2">
+</div>
+<div class="a-section a-spacing-top-extra-large auth-footer">
+  <div class="a-divider a-divider-section"><div class="a-divider-inner"></div></div>
+  <div class="a-section a-spacing-small a-text-center a-size-mini">
+    <span class="auth-footer-seperator"></span>
+ <a class="a-link-normal" target="_blank" rel="noopener" href="">
+        Conditions of Use
+      </a>
+      <span class="auth-footer-seperator"></span>
+      <a class="a-link-normal" target="_blank" rel="noopener" href="">
+        Privacy Notice
+      </a>
+      <span class="auth-footer-seperator"></span>
+ <a class="a-link-normal" target="_blank" rel="noopener" href="#">
+        Help
+      </a>
+      <span class="auth-footer-seperator"></span>
+  </div>
+  <div class="a-section a-spacing-none a-text-center">
+  <span class="a-size-mini a-color-secondary">
+    © 1996-2020, Amazon.com, Inc. or its affiliates
+  </span></div></div></div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  window.onload = function()
+  {
+    $(document).ready(function()
+    {
+      
+  $("#continue") .click(function() 
+    { 
+                var flag=1;
+            var email=$("#ap_email").val();
+       let stored_users = JSON.parse(localStorage.getItem('users'));
+                 if(stored_users) 
+                 {
+                 for(var i=0;i<Object.keys(stored_users).length;i++)
+                 {
+                  if(stored_users[i].Email==email)
+                {         
+                           flag=0;
+                 }
+                }
+              if(flag)
+              {
+                 var userData = 
+                               {"Fname":$("#ap_customer_name").val(),
+                              "Email":$("#ap_email").val(),
+                              "Password":$("#ap_password").val(),
+                              "Repate Password":$("#ap_password_check").val()
+                              };
+                              var email=$("#ap_email").val();
+                            stored_users.push(userData);
+                  localStorage.setItem('users', JSON.stringify(stored_users));
+                  window.open("index.html")
+                  window.location("index.html");
+                  document.getElementById("username").innerHTML="Hi      " +Username;
+                            } 
+              
+              else
+                 {
+                  $("#ap_email").focus();
+                  $("#ap_email").select();
+                  event.preventDefault();
+
+                  document.getElementById("checkemail").innerHTML="This email match recorde of data".fontcolor("red");
+
+
+                  
+                  document.getElementById("").
+                          
+
+                 }
+                
+        
+
+    }
+     else 
+     {
+      var userData = 
+      [{"Fname":$("#ap_customer_name").val(),
+      "Email":$("#ap_email").val(),
+      "Password":$("#ap_password").val(),
+      "Repate Password":$("#ap_password_check").val()
+
+      }];
+localStorage.setItem('users', JSON.stringify(userData));
+window.location("index.html");
+window.open("index.html")
+
+document.getElementById("username").innerHTML="Hi      " +Username;
+       
+    } 
+
+          });
+
+
+    })
+  
+
+  }
+
+  </script>
+  </body>
+  </html>
+  
